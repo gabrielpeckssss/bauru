@@ -1,0 +1,626 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brand:#E8530A;--brand2:#C44208;--brand-bg:#FFF3EE;
+  --navy:#0C1B3A;--navy2:#1A3460;
+  --green:#1D9E75;--green-bg:#E1F5EE;--green-dk:#085041;
+  --amber:#BA7517;--amber-bg:#FAEEDA;
+  --red:#A32D2D;--red-bg:#FCEBEB;
+  --surf:var(--color-background-primary);
+  --surf2:var(--color-background-secondary);
+  --bdr:var(--color-border-tertiary);
+  --txt:var(--color-text-primary);
+  --muted:var(--color-text-secondary);
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--txt)}
+.wrap{max-width:920px;margin:0 auto;padding:0 0 4rem}
+
+/* HERO */
+.hero{background:var(--navy);padding:2.5rem 2rem 2.5rem;border-radius:0 0 16px 16px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(232,83,10,0.12)}
+.hero::after{content:'';position:absolute;bottom:-80px;left:40%;width:180px;height:180px;border-radius:50%;background:rgba(232,83,10,0.06)}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,83,10,0.22);color:#FFAA80;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:1rem}
+.hero h1{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.55);max-width:540px;line-height:1.6}
+.hero-pills{display:flex;gap:8px;margin-top:1.5rem;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-size:11px;font-weight:500;padding:5px 12px;border-radius:100px}
+.pill strong{color:#fff;font-weight:600}
+
+/* NAV */
+.nav{display:flex;gap:4px;padding:.75rem 0;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nbtn{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:var(--muted);background:var(--surf2);border:.5px solid var(--bdr);border-radius:100px;padding:6px 15px;cursor:pointer;white-space:nowrap;transition:all .15s}
+.nbtn.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.nbtn:hover:not(.active){border-color:var(--brand);color:var(--brand)}
+
+.sec{display:none}.sec.active{display:block}
+
+/* SECTION TITLES */
+.stitle{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--txt);margin:1.5rem 0 .25rem}
+.ssub{font-size:12px;color:var(--muted);margin-bottom:1rem}
+
+/* KPI GRID */
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:1.25rem 0}
+.kpi{background:var(--surf2);border-radius:10px;padding:1rem}
+.kpi-l{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.kpi-v{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1}
+.kpi-s{font-size:11px;color:var(--muted);margin-top:3px}
+.kpi.ok{background:var(--green-bg)}.kpi.ok .kpi-v{color:var(--green-dk)}
+.kpi.warn{background:var(--amber-bg)}.kpi.warn .kpi-v{color:var(--amber)}
+.kpi.danger{background:var(--red-bg)}.kpi.danger .kpi-v{color:var(--red)}
+.kpi.brand{background:var(--brand-bg)}.kpi.brand .kpi-v{color:var(--brand2)}
+
+/* FINANCE CARDS */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1rem 0}
+.fcard{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem}
+.fcard h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:.75rem}
+.frow2{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:.5px solid var(--bdr)}
+.frow2:last-child{border:none;font-weight:600;font-size:13px}
+.frow2 .lbl{color:var(--muted)}
+.frow2 .val{font-weight:500}
+.fcard.good{border:1.5px solid var(--green)}
+.fcard.bad{border:.5px solid var(--bdr);opacity:.9}
+.winner-tag{display:inline-flex;font-size:10px;font-weight:600;background:var(--green-bg);color:var(--green-dk);padding:2px 9px;border-radius:100px;margin-left:8px}
+
+/* BREAKEVEN */
+.be-bar{height:12px;border-radius:6px;background:var(--surf2);position:relative;overflow:hidden;margin:8px 0}
+.be-fill{height:100%;border-radius:6px;background:var(--green);transition:width .6s}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{font-size:10px;font-weight:600;color:var(--muted);text-align:left;padding:7px 10px;border-bottom:.5px solid var(--bdr);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.tbl td{padding:9px 10px;border-bottom:.5px solid var(--bdr);color:var(--txt)}
+.tbl tr:last-child td{border:none}
+.tbl tr:hover td{background:var(--surf2)}
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px}
+.bg{background:var(--green-bg);color:var(--green-dk)}
+.ba{background:var(--amber-bg);color:var(--amber)}
+.bb{background:var(--brand-bg);color:var(--brand2)}
+.br{background:var(--red-bg);color:var(--red)}
+
+/* MAP SVG */
+.map-wrap{background:var(--surf2);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:26px;margin:1rem 0}
+.tl::before{content:'';position:absolute;left:7px;top:10px;bottom:10px;width:1.5px;background:var(--bdr)}
+.tli{position:relative;padding-bottom:1.25rem}
+.tli-dot{position:absolute;left:-23px;top:4px;width:15px;height:15px;border-radius:50%;border:2px solid var(--surf);flex-shrink:0}
+.tli-t{font-weight:600;font-size:13px;margin-bottom:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tli-d{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* COMPARE */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1rem 0}
+.ccard{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem}
+.ccard.best{border:2px solid var(--green)}
+.ccard h3{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:.75rem}
+.crow{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:.5px solid var(--bdr)}
+.crow:last-child{border:none}
+.crow .cl{color:var(--muted)}
+.crow .cv{font-weight:500}
+.cv.g{color:var(--green)}
+.cv.r{color:var(--red)}
+
+/* GALP TABLE */
+.galp-row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:10px 12px;border-bottom:.5px solid var(--bdr);font-size:12px}
+.galp-row:last-child{border:none}
+.galp-name{font-weight:500}
+.galp-area{color:var(--muted)}
+.galp-price{font-family:'Syne',sans-serif;font-weight:700;color:var(--brand2)}
+
+/* RISKS */
+.risk-item{display:flex;gap:12px;padding:12px 0;border-bottom:.5px solid var(--bdr)}
+.risk-item:last-child{border:none}
+.risk-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.risk-t{font-weight:600;font-size:13px;margin-bottom:2px}
+.risk-d{font-size:12px;color:var(--muted)}
+.risk-mit{font-size:11px;font-weight:600;margin-top:4px}
+
+/* NEXT STEPS */
+.step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:1rem 0}
+.step-card{background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:1rem}
+.step-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--bdr);line-height:1;margin-bottom:6px}
+.step-t{font-weight:600;font-size:13px;margin-bottom:4px}
+.step-d{font-size:11px;color:var(--muted)}
+.step-date{font-size:10px;font-weight:600;color:var(--brand);margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+
+@media(max-width:580px){.frow,.cgrid{grid-template-columns:1fr}.kgrid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="wrap">
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden">Apresentação estratégica CD Bauru — Super ABC</h2>
+
+<div class="hero">
+  <div class="hero-tag">Proposta executiva · Abril 2026</div>
+  <h1>Centro de Distribuição Bauru</h1>
+  <p class="hero-sub">Estratégia de expansão logística da Super ABC para o interior paulista — redução de custo, agilidade nas entregas e crescimento de receita.</p>
+  <div class="hero-pills">
+    <div class="pill"><strong>Origem:</strong> Mauá – SP</div>
+    <div class="pill"><strong>Hub CD:</strong> Bauru – SP</div>
+    <div class="pill"><strong>Distância:</strong> 320 km</div>
+    <div class="pill"><strong>Custo/km:</strong> R$ 3,50</div>
+    <div class="pill"><strong>Receita potencial:</strong> R$ 122.540/mês</div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nbtn active" onclick="show('resumo',this)">Resumo executivo</button>
+  <button class="nbtn" onclick="show('financeiro',this)">Análise financeira</button>
+  <button class="nbtn" onclick="show('mapa',this)">Mapa de cobertura</button>
+  <button class="nbtn" onclick="show('cidades',this)">Cidades & dados</button>
+  <button class="nbtn" onclick="show('galp',this)">Galpões em Bauru</button>
+  <button class="nbtn" onclick="show('riscos',this)">Riscos & mitigação</button>
+  <button class="nbtn" onclick="show('next',this)">Próximos passos</button>
+</div>
+
+<!-- RESUMO -->
+<div id="sec-resumo" class="sec active">
+  <div class="kgrid">
+    <div class="kpi brand"><div class="kpi-l">Receita atual</div><div class="kpi-v">R$122,5k</div><div class="kpi-s">19 cidades · 87 pedidos</div></div>
+    <div class="kpi danger"><div class="kpi-l">Custo viagem atual</div><div class="kpi-v">R$2.240</div><div class="kpi-s">320km ida+volta × R$3,50 × 2</div></div>
+    <div class="kpi warn"><div class="kpi-l">Custo mensal atual</div><div class="kpi-v">R$44,8k</div><div class="kpi-s">~20 viagens/mês (diário)</div></div>
+    <div class="kpi ok"><div class="kpi-l">Custo com CD</div><div class="kpi-v">R$8,1k</div><div class="kpi-s">2x/semana + galpão</div></div>
+  </div>
+
+  <div class="stitle">O problema em números</div>
+  <p class="ssub">Cada viagem diária Mauá → Bauru → Mauá consome R$ 2.240 só em transporte</p>
+
+  <div class="tl">
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--red)"></div>
+      <div class="tli-t">Saída de Mauá às 6h <span class="badge br">Problema</span></div>
+      <div class="tli-d">320 km de percurso até Bauru via Castelo Branco. Chegada ~10h. Custo: R$ 1.120 só de ida.</div>
+    </div>
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--amber)"></div>
+      <div class="tli-t">Janela de entrega de ~4 horas <span class="badge ba">Gargalo</span></div>
+      <div class="tli-d">Das 10h às 14h para entregar em Bauru e cidades vizinhas. Impossível cobrir 19 cidades com uma janela tão curta.</div>
+    </div>
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--red)"></div>
+      <div class="tli-t">Retorno a Mauá às 14h30 <span class="badge br">Custo duplo</span></div>
+      <div class="tli-d">Mais R$ 1.120 de volta. Total: R$ 2.240/dia só em frete. Nos 20 dias úteis: R$ 44.800/mês.</div>
+    </div>
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--brand)"></div>
+      <div class="tli-t">Cidades vizinhas não atendidas <span class="badge bb">Receita perdida</span></div>
+      <div class="tli-d">Agudos (10 pedidos), Arealva (4), Botucatu (16) e 6 cidades com potencial zero ficam sem cobertura adequada.</div>
+    </div>
+  </div>
+
+  <div class="stitle" style="margin-top:2rem">A solução</div>
+  <p class="ssub">CD em Bauru como hub: 1 viagem 2x/semana, distribuição local todos os dias</p>
+
+  <div class="tl">
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--green)"></div>
+      <div class="tli-t">Carga fechada Mauá → Bauru (2x/semana) <span class="badge bg">Eficiente</span></div>
+      <div class="tli-d">Volume consolidado da semana. Custo: R$ 1.120 × 2 = R$ 2.240/semana → R$ 8.960/mês apenas em transferência.</div>
+    </div>
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--green)"></div>
+      <div class="tli-t">CD Bauru distribui localmente todos os dias</div>
+      <div class="tli-d">Motorista local cobre raio de 100 km com dia completo de trabalho. Agudos (20km), Botucatu (70km), Arealva (62km) — todos no mesmo dia.</div>
+    </div>
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--green)"></div>
+      <div class="tli-t">Opção de retirada no CD <span class="badge bg">Diferencial</span></div>
+      <div class="tli-d">Clientes retiram na hora — reduz custo de entrega e aumenta satisfação. Pode atrair novos clientes da cidade.</div>
+    </div>
+    <div class="tli">
+      <div class="tli-dot" style="background:var(--green)"></div>
+      <div class="tli-t">Expansão para cidades sem pedidos <span class="badge bg">+Receita</span></div>
+      <div class="tli-d">Piratininga, Garça, Reginópolis, Macatuba e Barra Bonita passam a ser viáveis — potencial de +20% em receita.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCEIRO -->
+<div id="sec-financeiro" class="sec">
+  <div class="stitle">Análise de custo: modelo atual vs CD Bauru</div>
+  <p class="ssub">Baseado em R$ 3,50/km com caminhão próprio · 320 km Mauá–Bauru</p>
+
+  <div class="frow">
+    <div class="fcard bad">
+      <h3 style="color:var(--red)">Modelo atual — diário</h3>
+      <div class="frow2"><span class="lbl">Ida Mauá → Bauru (320km)</span><span class="val">R$ 1.120</span></div>
+      <div class="frow2"><span class="lbl">Volta Bauru → Mauá (320km)</span><span class="val">R$ 1.120</span></div>
+      <div class="frow2"><span class="lbl">Custo por viagem</span><span class="val" style="color:var(--red)">R$ 2.240</span></div>
+      <div class="frow2"><span class="lbl">Viagens/mês (20 dias úteis)</span><span class="val">20×</span></div>
+      <div class="frow2"><span class="lbl" style="font-weight:600">Total frete/mês</span><span class="val" style="color:var(--red);font-size:15px">R$ 44.800</span></div>
+    </div>
+    <div class="fcard good">
+      <h3 style="color:var(--green)">Modelo CD Bauru <span class="winner-tag">Recomendado</span></h3>
+      <div class="frow2"><span class="lbl">Transferência 2×/semana (ida só)</span><span class="val">R$ 1.120 × 8 = R$ 8.960</span></div>
+      <div class="frow2"><span class="lbl">Galpão em Bauru (1.000–1.500m²)</span><span class="val">R$ 8.000–12.000</span></div>
+      <div class="frow2"><span class="lbl">Motorista local (CLT estimado)</span><span class="val">R$ 3.500</span></div>
+      <div class="frow2"><span class="lbl">Veículo leve local (ou terceiro)</span><span class="val">R$ 2.500</span></div>
+      <div class="frow2"><span class="lbl" style="font-weight:600">Total mensal estimado</span><span class="val" style="color:var(--green);font-size:15px">R$ 22.960–27.000</span></div>
+    </div>
+  </div>
+
+  <div class="kgrid" style="margin-top:1.5rem">
+    <div class="kpi ok"><div class="kpi-l">Economia mensal</div><div class="kpi-v">R$17–22k</div><div class="kpi-s">vs modelo atual</div></div>
+    <div class="kpi ok"><div class="kpi-l">Economia anual</div><div class="kpi-v">R$200–264k</div><div class="kpi-s">só em frete</div></div>
+    <div class="kpi brand"><div class="kpi-l">Receita atual/mês</div><div class="kpi-v">R$122,5k</div><div class="kpi-s">19 cidades</div></div>
+    <div class="kpi warn"><div class="kpi-l">% frete sobre receita hoje</div><div class="kpi-v">36,6%</div><div class="kpi-s">Com CD cai para ~18%</div></div>
+  </div>
+
+  <div class="stitle">Projeção de receita com expansão</div>
+  <p class="ssub">Cidades sem pedidos com CD em Bauru passam a ser viáveis — ticket médio atual: R$ 1.408</p>
+
+  <div style="background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;margin:1rem 0">
+    <div style="padding:12px 14px;background:var(--surf2);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:grid;grid-template-columns:1fr auto auto auto;gap:10px">
+      <span>Cenário</span><span>Cidades novas</span><span>Pedidos/mês</span><span>Receita adicional</span>
+    </div>
+    <div id="proj-rows"></div>
+  </div>
+
+  <div class="stitle">Breakeven — quando o CD se paga?</div>
+  <p class="ssub">Considerando a economia de frete de R$ 17.800/mês e custo do CD de R$ 24.000/mês</p>
+  <div style="background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:1.25rem;margin:1rem 0">
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px">
+      <span style="color:var(--muted)">Custo implantação estimado (setup CD)</span>
+      <strong>R$ 15.000</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
+      <span style="color:var(--muted)">Economia líquida mensal (frete − custo CD)</span>
+      <strong style="color:var(--green)">R$ 20.800/mês</strong>
+    </div>
+    <div class="be-bar"><div class="be-fill" style="width:100%"></div></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px">Com economia de <strong style="color:var(--green)">R$ 20.800/mês</strong>, o investimento de setup de R$ 15.000 se paga em <strong style="color:var(--brand2)">menos de 1 mês</strong>. A partir daí, é lucro operacional puro.</div>
+  </div>
+</div>
+
+<!-- MAPA -->
+<div id="sec-mapa" class="sec">
+  <div class="stitle">Mapa de cobertura — raio 100 km de Bauru</div>
+  <p class="ssub">Tamanho proporcional ao faturamento · Cidades cinzas = potencial não explorado</p>
+  <div class="map-wrap">
+    <svg viewBox="0 0 860 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#DFF0F5;display:block">
+      <!-- background roads hint -->
+      <line x1="430" y1="252" x2="60" y2="252" stroke="#C5DCE4" stroke-width="2"/>
+      <line x1="430" y1="252" x2="800" y2="252" stroke="#C5DCE4" stroke-width="2"/>
+      <line x1="430" y1="252" x2="430" y2="30" stroke="#C5DCE4" stroke-width="2"/>
+      <line x1="430" y1="252" x2="430" y2="470" stroke="#C5DCE4" stroke-width="2"/>
+      <line x1="430" y1="252" x2="160" y2="440" stroke="#C5DCE4" stroke-width="1.5"/>
+      <line x1="430" y1="252" x2="700" y2="430" stroke="#C5DCE4" stroke-width="1.5"/>
+      <line x1="430" y1="252" x2="700" y2="80" stroke="#C5DCE4" stroke-width="1.5"/>
+      <line x1="430" y1="252" x2="160" y2="80" stroke="#C5DCE4" stroke-width="1.5"/>
+
+      <!-- 100km radius -->
+      <circle cx="430" cy="252" r="185" fill="rgba(232,83,10,0.07)" stroke="#E8530A" stroke-width="1.2" stroke-dasharray="6,4"/>
+      <text x="615" y="165" fill="#E8530A" font-size="10" font-family="Plus Jakarta Sans,sans-serif" opacity=".8">raio ~100km</text>
+
+      <!-- Route from Mauá -->
+      <line x1="790" y1="50" x2="430" y2="252" stroke="#0C1B3A" stroke-width="1.5" stroke-dasharray="7,4" opacity=".35"/>
+      <text x="640" y="120" fill="#0C1B3A" font-size="10" font-family="Plus Jakarta Sans,sans-serif" opacity=".5" transform="rotate(-17,640,120)">Castelo Branco · 320km</text>
+
+      <!-- MAUÁ origin -->
+      <circle cx="790" cy="50" r="9" fill="#0C1B3A" stroke="#fff" stroke-width="2"/>
+      <text x="802" y="48" fill="#0C1B3A" font-size="11" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Mauá (origem)</text>
+
+      <!-- CD BAURU hub -->
+      <circle cx="430" cy="252" r="22" fill="#E8530A" stroke="#fff" stroke-width="3"/>
+      <text x="430" y="256" fill="#fff" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="middle">HUB CD</text>
+      <text x="430" y="284" fill="#0C1B3A" font-size="14" font-family="Syne,sans-serif" font-weight="800" text-anchor="middle">BAURU</text>
+      <text x="430" y="298" fill="#E8530A" font-size="10" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">49 ped · R$61,3k</text>
+
+      <!-- BOTUCATU large -->
+      <circle cx="510" cy="408" r="15" fill="#1D9E75" stroke="#fff" stroke-width="2"/>
+      <text x="510" y="413" fill="#fff" font-size="8" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">R$30k</text>
+      <text x="510" y="430" fill="#085041" font-size="11" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Botucatu</text>
+      <text x="510" y="442" fill="#5F5E5A" font-size="9" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif">70km · 16 ped</text>
+
+      <!-- AGUDOS medium -->
+      <circle cx="472" cy="330" r="11" fill="#1D9E75" stroke="#fff" stroke-width="2"/>
+      <text x="472" y="334" fill="#fff" font-size="7" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">R$8,5k</text>
+      <text x="472" y="350" fill="#085041" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Agudos</text>
+      <text x="472" y="361" fill="#5F5E5A" font-size="9" text-anchor="middle">20km · 10 ped</text>
+
+      <!-- AREALVA -->
+      <circle cx="620" cy="188" r="9" fill="#1D9E75" stroke="#fff" stroke-width="2"/>
+      <text x="620" y="192" fill="#fff" font-size="7" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">R$6,8k</text>
+      <text x="620" y="207" fill="#085041" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Arealva</text>
+      <text x="620" y="218" fill="#5F5E5A" font-size="9" text-anchor="middle">62km · 4 ped</text>
+
+      <!-- PIRAJUÍ -->
+      <circle cx="272" cy="138" r="7" fill="#BA7517" stroke="#fff" stroke-width="2"/>
+      <text x="272" y="125" fill="#633806" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Pirajuí</text>
+      <text x="272" y="136" fill="#5F5E5A" font-size="9" text-anchor="middle">90km · 2 ped</text>
+
+      <!-- LENÇÓIS PAULISTA -->
+      <circle cx="572" cy="342" r="7" fill="#BA7517" stroke="#fff" stroke-width="2"/>
+      <text x="600" y="340" fill="#633806" font-size="10" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Lençóis P.</text>
+      <text x="600" y="351" fill="#5F5E5A" font-size="9">50km · 2 ped</text>
+
+      <!-- AVAI -->
+      <circle cx="548" cy="268" r="6" fill="#BA7517" stroke="#fff" stroke-width="2"/>
+      <text x="548" y="255" fill="#633806" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Avaí</text>
+
+      <!-- BOREBI -->
+      <circle cx="450" cy="372" r="6" fill="#BA7517" stroke="#fff" stroke-width="2"/>
+      <text x="450" y="389" fill="#633806" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Borebi</text>
+
+      <!-- UBIRAJARA -->
+      <circle cx="294" cy="338" r="6" fill="#BA7517" stroke="#fff" stroke-width="2"/>
+      <text x="256" y="344" fill="#633806" font-size="10" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Ubirajara</text>
+
+      <!-- LUCIANÓPOLIS -->
+      <circle cx="354" cy="192" r="6" fill="#BA7517" stroke="#fff" stroke-width="2"/>
+      <text x="316" y="192" fill="#633806" font-size="10" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Lucianópolis</text>
+
+      <!-- IACANGA -->
+      <circle cx="654" cy="134" r="5" fill="#BA7517" stroke="#fff" stroke-width="1.5"/>
+      <text x="666" y="132" fill="#633806" font-size="10" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Iacanga</text>
+
+      <!-- Zero / potential cities -->
+      <circle cx="200" cy="172" r="5" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
+      <text x="200" y="162" fill="#888780" font-size="9" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif">Garça</text>
+
+      <circle cx="338" cy="230" r="5" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
+      <text x="315" y="228" fill="#888780" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Pres. Alves</text>
+
+      <circle cx="674" cy="308" r="5" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
+      <text x="684" y="306" fill="#888780" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Barra Bonita</text>
+
+      <circle cx="492" cy="312" r="5" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
+      <text x="504" y="310" fill="#888780" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Piratininga</text>
+
+      <circle cx="574" cy="440" r="5" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
+      <text x="574" y="454" fill="#888780" font-size="9" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif">Macatuba</text>
+
+      <!-- Legend box -->
+      <rect x="16" y="16" width="190" height="110" rx="6" fill="white" stroke="#D3D1C7" stroke-width=".5" opacity=".93"/>
+      <text x="26" y="34" fill="#2C2C2A" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-transform="uppercase" letter-spacing=".05em">LEGENDA</text>
+      <circle cx="28" cy="48" r="7" fill="#E8530A" stroke="#fff" stroke-width="1.5"/>
+      <text x="40" y="52" fill="#444441" font-size="10" font-family="Plus Jakarta Sans,sans-serif">Hub CD — Bauru</text>
+      <circle cx="28" cy="66" r="5" fill="#1D9E75"/>
+      <text x="40" y="70" fill="#444441" font-size="10" font-family="Plus Jakarta Sans,sans-serif">Alto volume (R$5k+)</text>
+      <circle cx="28" cy="82" r="5" fill="#BA7517"/>
+      <text x="40" y="86" fill="#444441" font-size="10" font-family="Plus Jakarta Sans,sans-serif">Volume médio</text>
+      <circle cx="28" cy="98" r="4" fill="#B4B2A9"/>
+      <text x="40" y="102" fill="#888780" font-size="10" font-family="Plus Jakarta Sans,sans-serif">Potencial (0 pedidos)</text>
+      <circle cx="28" cy="114" r="5" fill="#0C1B3A"/>
+      <text x="40" y="118" fill="#444441" font-size="10" font-family="Plus Jakarta Sans,sans-serif">Mauá (origem)</text>
+    </svg>
+    <div style="padding:10px 14px;border-top:.5px solid var(--bdr);display:flex;gap:1.5rem;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--muted)">Mapa esquemático · proporcional ao faturamento real</span>
+      <a href="https://www.google.com/maps/@-22.3148,-49.0608,10z" target="_blank" style="font-size:11px;color:var(--brand);font-weight:600;text-decoration:none">Abrir no Google Maps →</a>
+    </div>
+  </div>
+</div>
+
+<!-- CIDADES -->
+<div id="sec-cidades" class="sec">
+  <div class="stitle">Desempenho por cidade</div>
+  <p class="ssub">Ordenado por faturamento · Ticket médio geral: R$ 1.408</p>
+  <div style="background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden">
+    <table class="tbl">
+      <thead><tr style="background:var(--surf2)">
+        <th>Cidade</th><th>Pedidos</th><th>Faturamento</th><th>Ticket médio</th><th>Dist. CD</th><th>Status</th>
+      </tr></thead>
+      <tbody id="ctbody"></tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:var(--muted);margin-top:8px">* Cidades com R$ 0 em pedidos mas que aparecem nos dados indicam contatos/leads sem conversão — potencial imediato com CD local.</p>
+</div>
+
+<!-- GALPÕES -->
+<div id="sec-galp" class="sec">
+  <div class="stitle">Mercado de galpões em Bauru — SP</div>
+  <p class="ssub">Pesquisa de mercado · faixa 1.000–2.000m² · Abril 2026</p>
+
+  <div class="kgrid">
+    <div class="kpi warn"><div class="kpi-l">Faixa de preço</div><div class="kpi-v">R$8–15k</div><div class="kpi-s">1.000–2.000m² / mês</div></div>
+    <div class="kpi"><div class="kpi-l">Preço médio/m²</div><div class="kpi-v">R$7–9</div><div class="kpi-s">Por mês (galpão simples)</div></div>
+    <div class="kpi ok"><div class="kpi-l">Opção recomendada</div><div class="kpi-v">1.100m²</div><div class="kpi-s">Bauru Business Park</div></div>
+    <div class="kpi brand"><div class="kpi-l">Anúncios ativos</div><div class="kpi-v">300+</div><div class="kpi-s">Viva Real · ZAP · Chaves na Mão</div></div>
+  </div>
+
+  <div style="background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;overflow:hidden;margin:1rem 0">
+    <div style="padding:10px 14px;background:var(--surf2);display:grid;grid-template-columns:1fr auto auto;gap:12px;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">
+      <span>Opção / localização</span><span>Área</span><span>Aluguel estimado/mês</span>
+    </div>
+    <div class="galp-row">
+      <div><div class="galp-name">Bauru Business Park <span class="badge bg" style="margin-left:6px">Recomendado</span></div><div class="galp-area">Rodovia Marechal Rondon km 348 · Docas + pátio de manobra · Pé direito 10m</div></div>
+      <div class="galp-area">1.100m²</div>
+      <div class="galp-price">~R$ 9.900–11.000</div>
+    </div>
+    <div class="galp-row">
+      <div><div class="galp-name">Galpão Distrito Industrial</div><div class="galp-area">Região industrial · 2 docas · Câmaras frias disponíveis · Pátio 4.000m²</div></div>
+      <div class="galp-area">2.000m²</div>
+      <div class="galp-price">~R$ 14.000–16.000</div>
+    </div>
+    <div class="galp-row">
+      <div><div class="galp-name">Galpão Parque Paulista</div><div class="galp-area">100m da Av. Rodrigues Alves · 10 docas · Próximo ao centro</div></div>
+      <div class="galp-area">2.000m²</div>
+      <div class="galp-price">~R$ 13.000–15.000</div>
+    </div>
+    <div class="galp-row">
+      <div><div class="galp-name">Galpão Simples — Barracão Bauru</div><div class="galp-area">Região industrial · sem docas · Opção mais econômica para início</div></div>
+      <div class="galp-area">1.000–1.200m²</div>
+      <div class="galp-price">~R$ 8.000–10.000</div>
+    </div>
+  </div>
+
+  <div style="background:var(--green-bg);border:.5px solid #9FE1CB;border-radius:12px;padding:1rem;margin-top:1rem">
+    <p style="font-size:13px;font-weight:600;color:var(--green-dk);margin-bottom:4px">Recomendação: começar com 1.000–1.100m²</p>
+    <p style="font-size:12px;color:#0F6E56;line-height:1.6">Para a operação inicial (distribuição regional, retirada de clientes, estoque de ciclo curto), 1.000m² é mais que suficiente. O Bauru Business Park tem infraestrutura de condomínio logístico — docas, segurança, pátio — sem o custo de um galpão grande. Conforme o volume crescer, é possível expandir para módulos maiores no mesmo condomínio.</p>
+    <a href="https://www.google.com/maps/search/galpao+logistico+bauru+sp/@-22.3148,-49.0608,13z" target="_blank" style="display:inline-flex;align-items:center;margin-top:8px;font-size:12px;font-weight:600;color:var(--green-dk);text-decoration:none">Ver galpões no Google Maps →</a>
+  </div>
+</div>
+
+<!-- RISCOS -->
+<div id="sec-riscos" class="sec">
+  <div class="stitle">Riscos e mitigação</div>
+  <p class="ssub">Principais pontos que a diretoria deve considerar antes da decisão</p>
+
+  <div style="background:var(--surf);border:.5px solid var(--bdr);border-radius:12px;padding:1rem;margin:1rem 0">
+    <div class="risk-item">
+      <div class="risk-icon" style="background:var(--red-bg)">⚠</div>
+      <div>
+        <div class="risk-t">Volume insuficiente para cobrir custos fixos do CD</div>
+        <div class="risk-d">Se os R$ 122.540/mês de faturamento caírem, o CD pode virar custo sem retorno.</div>
+        <div class="risk-mit" style="color:var(--green)">Mitigação: começar com contrato de galpão de 12 meses renovável · Volume mínimo de break-even é baixo (R$ 25k/mês cobre o CD)</div>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon" style="background:var(--amber-bg)">👤</div>
+      <div>
+        <div class="risk-t">Gestão à distância do CD</div>
+        <div class="risk-d">Controlar estoque e equipe a 320km é desafiador sem processos claros.</div>
+        <div class="risk-mit" style="color:var(--green)">Mitigação: definir responsável local desde o dia 1 · Sistema de gestão de estoque simples (mesmo que planilha inicialmente) · Visitas semanais no início</div>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon" style="background:var(--amber-bg)">📦</div>
+      <div>
+        <div class="risk-t">Excesso de estoque parado em Bauru</div>
+        <div class="risk-d">Carga fechada 2x/semana pode gerar estoque ocioso se pedidos variarem muito.</div>
+        <div class="risk-mit" style="color:var(--green)">Mitigação: pedidos cortados na quinta para envio na segunda · Estoque de segurança de apenas 3–5 dias · Sistema de reposição por demanda</div>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon" style="background:var(--red-bg)">🔒</div>
+      <div>
+        <div class="risk-t">Segurança do estoque no CD</div>
+        <div class="risk-d">Galpão fora da sede aumenta risco de furtos e perdas sem supervisão direta.</div>
+        <div class="risk-mit" style="color:var(--green)">Mitigação: contratar galpão em condomínio logístico com segurança 24h (ex: Bauru Business Park) · Seguro de carga no CD</div>
+      </div>
+    </div>
+    <div class="risk-item" style="border:none">
+      <div class="risk-icon" style="background:var(--surf2)">📋</div>
+      <div>
+        <div class="risk-t">Custos trabalhistas do operador local</div>
+        <div class="risk-d">Contratação CLT traz encargos. Demissão tem custo se o projeto não vingar.</div>
+        <div class="risk-mit" style="color:var(--green)">Mitigação: avaliar parceiro 3PL (operador logístico terceirizado) por 6 meses antes de contratar CLT · Menor risco na fase piloto</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRÓXIMOS PASSOS -->
+<div id="sec-next" class="sec">
+  <div class="stitle">Plano de ação — 90 dias</div>
+  <p class="ssub">Proposta de cronograma para aprovação e implementação</p>
+
+  <div class="step-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-t">Aprovação da diretoria</div>
+      <div class="step-d">Apresentação deste material · Definir budget máximo para o CD · Autorizar visita a Bauru</div>
+      <div class="step-date">Semana 1</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-t">Visita a galpões em Bauru</div>
+      <div class="step-d">Visitar 3 opções (Bauru Business Park, Distrito Industrial, Parque Paulista) · Negociar condições</div>
+      <div class="step-date">Semana 2–3</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-t">Definir operador local</div>
+      <div class="step-d">Avaliar 3PL vs CLT · Contato com operadoras logísticas de Bauru · Definir modelo de gestão</div>
+      <div class="step-date">Semana 3–4</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-t">Assinar contrato do galpão</div>
+      <div class="step-d">Negociar contrato de 12 meses com opção de renovação · Definir data de entrada</div>
+      <div class="step-date">Semana 4–5</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">05</div>
+      <div class="step-t">Piloto 30 dias</div>
+      <div class="step-d">1ª carga fechada para Bauru · Medir tempo de entrega, satisfação, cobertura de cidades · Ajustar rota</div>
+      <div class="step-date">Mês 2</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">06</div>
+      <div class="step-t">Expansão de cidades</div>
+      <div class="step-d">Abordar Piratininga, Garça, Macatuba e Barra Bonita · Meta: +20% em receita no trimestre</div>
+      <div class="step-date">Mês 3</div>
+    </div>
+  </div>
+
+  <div style="background:var(--navy);border-radius:12px;padding:1.5rem;margin-top:1.5rem">
+    <p style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:.5rem">Resumo da decisão</p>
+    <p style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:1rem">Hoje gastamos <strong style="color:#FFAA80">R$ 44.800/mês</strong> só em frete para atender 19 cidades com janela limitada. Com o CD em Bauru, esse custo cai para <strong style="color:#5DCAA5">R$ 22–27k/mês</strong> e ganhamos capacidade de atender mais cidades, com melhor nível de serviço e opção de retirada para o cliente. O breakeven é imediato — a economia de frete já paga o CD no primeiro mês.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 16px;text-align:center">
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#5DCAA5">R$200–264k</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5)">economia de frete/ano</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 16px;text-align:center">
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#FFAA80">+20%</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5)">receita potencial</div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 16px;text-align:center">
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff">&lt;30 dias</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5)">para implementar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const cities=[
+  {n:"Bauru",p:49,f:61323.37,d:"Hub",dist:"—"},
+  {n:"Botucatu",p:16,f:29861.21,d:"Ativo",dist:"70km"},
+  {n:"Agudos",p:10,f:8479.87,d:"Ativo",dist:"20km"},
+  {n:"Arealva",p:4,f:6808.81,d:"Ativo",dist:"62km"},
+  {n:"Pirajuí",p:2,f:2939.22,d:"Ativo",dist:"90km"},
+  {n:"Ubirajara",p:1,f:2720.59,d:"Ativo",dist:"85km"},
+  {n:"Borebi",p:1,f:2605.73,d:"Ativo",dist:"55km"},
+  {n:"Lucianópolis",p:1,f:2287.71,d:"Ativo",dist:"38km"},
+  {n:"Lençóis Paulista",p:2,f:905.00,d:"Ativo",dist:"50km"},
+  {n:"Avaí",p:1,f:859.61,d:"Ativo",dist:"42km"},
+  {n:"Iacanga",p:1,f:403.46,d:"Ativo",dist:"65km"},
+  {n:"Cafelândia",p:0,f:1221.09,d:"Potencial",dist:"75km"},
+  {n:"Presidente Alves",p:0,f:820.72,d:"Potencial",dist:"45km"},
+  {n:"Reginópolis",p:0,f:627.10,d:"Potencial",dist:"70km"},
+  {n:"Macatuba",p:0,f:321.29,d:"Potencial",dist:"60km"},
+  {n:"São Manuel",p:0,f:85.67,d:"Potencial",dist:"80km"},
+  {n:"Barra Bonita",p:0,f:42.06,d:"Potencial",dist:"72km"},
+  {n:"Garça",p:0,f:25.47,d:"Potencial",dist:"95km"},
+  {n:"Piratininga",p:0,f:0,d:"Potencial",dist:"22km"},
+];
+const fmt=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const tb=document.getElementById('ctbody');
+cities.forEach(c=>{
+  const tk=c.p>0?fmt(c.f/c.p):'—';
+  const sb=c.d==='Hub'?'<span class="badge bb">Hub CD</span>':c.d==='Ativo'?'<span class="badge bg">Ativo</span>':'<span class="badge ba">Potencial</span>';
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${c.n}</td><td>${c.p}</td><td>${fmt(c.f)}</td><td>${tk}</td><td>${c.dist}</td><td>${sb}</td>`;
+  tb.appendChild(tr);
+});
+
+const projs=[
+  {sc:"Conservador",nc:3,ped:8,rev:11264},
+  {sc:"Moderado",nc:5,ped:15,rev:21120},
+  {sc:"Otimista",nc:8,ped:28,rev:39424},
+];
+const pr=document.getElementById('proj-rows');
+projs.forEach(p=>{
+  const d=document.createElement('div');
+  d.style.cssText='display:grid;grid-template-columns:1fr auto auto auto;gap:10px;padding:10px 14px;border-bottom:.5px solid var(--bdr);font-size:12px;align-items:center';
+  d.innerHTML=`<span style="font-weight:500">${p.sc}</span><span style="color:var(--muted)">${p.nc} cidades</span><span>${p.ped} ped/mês</span><span style="font-family:Syne,sans-serif;font-weight:700;color:var(--green)">+${fmt(p.rev)}</span>`;
+  pr.appendChild(d);
+});
+const last=document.createElement('div');
+last.style.cssText='display:grid;grid-template-columns:1fr auto auto auto;gap:10px;padding:10px 14px;font-size:12px;align-items:center;background:var(--green-bg)';
+last.innerHTML=`<span style="font-weight:600;color:var(--green-dk)">Receita total (moderado)</span><span></span><span></span><span style="font-family:Syne,sans-serif;font-weight:800;color:var(--green-dk);font-size:14px">${fmt(122540+21120)}/mês</span>`;
+pr.appendChild(last);
+
+function show(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
