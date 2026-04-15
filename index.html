@@ -1,6 +1,6 @@
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --br:#E8530A;--br2:#C44208;--br-bg:#FFF3EE;
@@ -17,9 +17,12 @@
 body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 .w{max-width:900px;margin:0 auto;padding:0 0 3rem}
 
+/* números em DM Mono — largura fixa, nunca estica */
+.num{font-family:'DM Mono',monospace;font-weight:500;font-size:16px;line-height:1.2;word-break:break-all;overflow-wrap:anywhere}
+
 .hero{background:var(--nv);padding:1.5rem 1rem 1.75rem;border-radius:0 0 14px 14px}
 .hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(232,83,10,0.22);color:#FFAA80;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:.75rem}
-.hero h1{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:.4rem;word-break:break-word}
+.hero h1{font-size:17px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.4rem}
 .hero-sub{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6}
 .hero-pills{display:flex;gap:6px;margin-top:1rem;flex-wrap:wrap}
 .pill{background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-size:10px;font-weight:500;padding:4px 10px;border-radius:100px;white-space:nowrap}
@@ -31,26 +34,35 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 .nb.active{background:var(--br);color:#fff;border-color:var(--br)}
 
 .sec{display:none}.sec.active{display:block}
-.st{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--tx);margin:1.25rem 0 .2rem}
+.st{font-size:14px;font-weight:700;color:var(--tx);margin:1.25rem 0 .2rem}
 .ss{font-size:11px;color:var(--mu);margin-bottom:.75rem;line-height:1.5}
 
-/* KPI — fonte controlada, nunca vaza */
+/* KPI grid — 2 cols mobile, 4 cols desktop */
 .kg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:1rem 0}
-.kpi{background:var(--s2);border-radius:10px;padding:.75rem;min-width:0;overflow:hidden}
-.kl{font-size:10px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kv{font-family:'Syne',sans-serif;font-size:clamp(13px,4vw,18px);font-weight:800;line-height:1.1;word-break:break-word;overflow-wrap:break-word}
-.ks{font-size:10px;color:var(--mu);margin-top:3px;line-height:1.4;white-space:normal}
-.kpi.ok{background:var(--gr-bg)}.kpi.ok .kv{color:var(--gr-dk)}
-.kpi.warn{background:var(--am-bg)}.kpi.warn .kv{color:var(--am)}
-.kpi.danger{background:var(--rd-bg)}.kpi.danger .kv{color:var(--rd)}
-.kpi.brand{background:var(--br-bg)}.kpi.brand .kv{color:var(--br2)}
+@media(min-width:500px){.kg{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.kpi{border-radius:10px;padding:.75rem;min-width:0;overflow:hidden}
+.kpi.base{background:var(--s2)}
+.kpi.ok{background:var(--gr-bg)}
+.kpi.warn{background:var(--am-bg)}
+.kpi.danger{background:var(--rd-bg)}
+.kpi.brand{background:var(--br-bg)}
+
+.kl{font-size:9px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+/* kv usa DM Mono para não esticar */
+.kv{font-family:'DM Mono',monospace;font-weight:500;font-size:15px;line-height:1.2;word-break:break-all;overflow-wrap:anywhere}
+.kpi.ok .kv{color:var(--gr-dk)}
+.kpi.warn .kv{color:var(--am)}
+.kpi.danger .kv{color:var(--rd)}
+.kpi.brand .kv{color:var(--br2)}
+.ks{font-size:10px;color:var(--mu);margin-top:3px;line-height:1.4}
 
 .fc{background:var(--s);border:.5px solid var(--bd);border-radius:12px;padding:1rem;margin-bottom:10px}
-.fc h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:.6rem}
+.fc h3{font-size:13px;font-weight:700;margin-bottom:.6rem}
 .fr{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid var(--bd);gap:8px}
 .fr:last-child{border:none;font-weight:600}
 .fr .lb{color:var(--mu);flex:1;min-width:0;line-height:1.4}
-.fr .vl{font-weight:500;text-align:right;flex-shrink:0;font-size:12px}
+.fr .vl{font-family:'DM Mono',monospace;font-weight:500;font-size:12px;text-align:right;flex-shrink:0}
 .fc.good{border:1.5px solid var(--gr)}
 
 .badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 7px;border-radius:100px;white-space:nowrap}
@@ -60,63 +72,58 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 .br2{background:var(--rd-bg);color:var(--rd)}
 
 .tbl-wrap{background:var(--s);border:.5px solid var(--bd);border-radius:12px;overflow:hidden;margin:1rem 0}
-.tbl-wrap table{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
-.tbl-wrap th{font-size:9px;font-weight:600;color:var(--mu);text-align:left;padding:7px 8px;border-bottom:.5px solid var(--bd);text-transform:uppercase;letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--s2)}
-.tbl-wrap td{padding:8px;border-bottom:.5px solid var(--bd);color:var(--tx);word-break:break-word;font-size:11px}
+.tbl-wrap table{width:100%;border-collapse:collapse;table-layout:fixed}
+.tbl-wrap th{font-size:9px;font-weight:700;color:var(--mu);text-align:left;padding:7px 8px;border-bottom:.5px solid var(--bd);text-transform:uppercase;letter-spacing:.04em;background:var(--s2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tbl-wrap td{padding:8px;border-bottom:.5px solid var(--bd);color:var(--tx);font-size:11px;word-break:break-word}
 .tbl-wrap tr:last-child td{border:none}
 
 .tl{position:relative;padding-left:22px;margin:.75rem 0}
 .tl::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1.5px;background:var(--bd)}
 .tli{position:relative;padding-bottom:1rem}
 .tld{position:absolute;left:-20px;top:4px;width:13px;height:13px;border-radius:50%;border:2px solid var(--s)}
-.tlt{font-weight:600;font-size:12px;margin-bottom:2px;display:flex;align-items:flex-start;gap:5px;flex-wrap:wrap;line-height:1.4}
+.tlt{font-weight:700;font-size:12px;margin-bottom:2px;display:flex;align-items:flex-start;gap:5px;flex-wrap:wrap;line-height:1.4}
 .tls{font-size:11px;color:var(--mu);line-height:1.5}
 
 .slider-wrap{background:var(--s);border:.5px solid var(--bd);border-radius:12px;padding:1rem;margin:1rem 0}
 .slider-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .slider-row label{font-size:11px;color:var(--mu);white-space:nowrap;min-width:80px}
-.slider-row input[type=range]{flex:1;min-width:0}
-.slider-row span{font-size:12px;font-weight:600;min-width:40px;text-align:right;flex-shrink:0}
+.slider-row input{flex:1;min-width:0}
+.slider-row span{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;min-width:52px;text-align:right;flex-shrink:0}
 
-/* sim-out: mesma grade controlada que os KPI */
 .sim-out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+@media(min-width:500px){.sim-out{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .sim-card{background:var(--s2);border-radius:8px;padding:.65rem;min-width:0;overflow:hidden}
-.sim-l{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);margin-bottom:2px}
-.sim-v{font-family:'Syne',sans-serif;font-size:clamp(13px,4vw,17px);font-weight:800;line-height:1.1;word-break:break-word;overflow-wrap:break-word}
+.sim-l{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);margin-bottom:3px}
+.sim-v{font-family:'DM Mono',monospace;font-weight:500;font-size:13px;line-height:1.2;word-break:break-all;overflow-wrap:anywhere}
 
 .risk-item{display:flex;gap:10px;padding:10px 0;border-bottom:.5px solid var(--bd)}
 .risk-item:last-child{border:none}
-.risk-ic{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.risk-t{font-weight:600;font-size:12px;margin-bottom:2px}
+.risk-ic{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.risk-t{font-weight:700;font-size:12px;margin-bottom:2px}
 .risk-d{font-size:11px;color:var(--mu);line-height:1.5}
 .risk-m{font-size:10px;font-weight:600;margin-top:3px}
 
 .step-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:1rem 0}
+@media(min-width:500px){.step-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .step-card{background:var(--s);border:.5px solid var(--bd);border-radius:10px;padding:.85rem;min-width:0}
-.step-n{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--bd);line-height:1;margin-bottom:5px}
-.step-t{font-weight:600;font-size:12px;margin-bottom:3px}
+.step-n{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--bd);line-height:1;margin-bottom:5px}
+.step-t{font-weight:700;font-size:12px;margin-bottom:3px}
 .step-d{font-size:10px;color:var(--mu);line-height:1.5}
-.step-dt{font-size:10px;font-weight:600;color:var(--br);margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
+.step-dt{font-family:'DM Mono',monospace;font-size:10px;color:var(--br);margin-top:5px}
 
 .closing{background:var(--nv);border-radius:12px;padding:1.25rem;margin-top:1.25rem}
-.closing-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:.4rem}
-.closing-text{font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1rem}
+.closing-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:.4rem}
+.closing-text{font-size:11px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:1rem}
 .closing-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .cs{background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:8px;padding:.6rem;text-align:center;min-width:0;overflow:hidden}
-.cs-v{font-family:'Syne',sans-serif;font-size:clamp(12px,3.5vw,16px);font-weight:800;word-break:break-word;overflow-wrap:break-word}
+.cs-v{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;word-break:break-all;overflow-wrap:anywhere}
 .cs-l{font-size:9px;color:rgba(255,255,255,.45);margin-top:2px}
 
-.galp-row{display:flex;flex-direction:column;gap:3px;padding:10px;border-bottom:.5px solid var(--bd);font-size:12px}
+.galp-row{display:flex;flex-direction:column;gap:3px;padding:10px;border-bottom:.5px solid var(--bd)}
 .galp-row:last-child{border:none}
-.galp-name{font-weight:600;font-size:12px}
+.galp-name{font-weight:700;font-size:12px}
 .galp-desc{font-size:10px;color:var(--mu);line-height:1.4}
-.galp-price{font-family:'Syne',sans-serif;font-weight:700;color:var(--br2);font-size:13px;margin-top:2px}
-
-@media(min-width:520px){
-  .kg{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .step-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .sim-out{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
+.galp-price{font-family:'DM Mono',monospace;font-size:12px;color:var(--br2);margin-top:2px}
 </style>
 
 <div class="w">
@@ -130,7 +137,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
     <div class="pill"><strong>Origem:</strong> Mauá – SP</div>
     <div class="pill"><strong>Hub CD:</strong> Bauru – SP</div>
     <div class="pill"><strong>R$ 3,50/km</strong></div>
-    <div class="pill"><strong>Receita atual:</strong> R$ 122,5k/mês</div>
+    <div class="pill"><strong>Receita:</strong> R$ 122,5k/mês</div>
   </div>
 </div>
 
@@ -148,10 +155,10 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 <!-- RESUMO -->
 <div id="sec-resumo" class="sec active">
   <div class="kg">
-    <div class="kpi brand"><div class="kl">Receita atual/mês</div><div class="kv">R$ 122,5k</div><div class="ks">19 cidades · 87 pedidos</div></div>
-    <div class="kpi danger"><div class="kl">Frete atual/mês</div><div class="kv">R$ 8.960</div><div class="ks">1x/sem · ida+volta · 4 viagens</div></div>
-    <div class="kpi warn"><div class="kl">Frete % receita</div><div class="kv">7,3%</div><div class="ks">Sem CD, esse % sobe com mais visitas</div></div>
-    <div class="kpi ok"><div class="kl">Custo total CD/mês</div><div class="kv">~R$ 20k</div><div class="ks">Frete + galpão + equipe local</div></div>
+    <div class="kpi brand"><div class="kl">Receita atual/mês</div><div class="kv">R$122,5k</div><div class="ks">19 cidades · 87 pedidos</div></div>
+    <div class="kpi danger"><div class="kl">Frete atual/mês</div><div class="kv">R$8.960</div><div class="ks">1×/sem · ida+volta · 4 viagens</div></div>
+    <div class="kpi warn"><div class="kl">Frete % receita</div><div class="kv">7,3%</div><div class="ks">Sem CD sobe com mais visitas</div></div>
+    <div class="kpi ok"><div class="kl">Custo total CD/mês</div><div class="kv">~R$24k</div><div class="ks">Frete + galpão + equipe</div></div>
   </div>
 
   <p class="st">O problema atual</p>
@@ -159,18 +166,18 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
   <div class="tl">
     <div class="tli">
       <div class="tld" style="background:var(--rd)"></div>
-      <div class="tlt">Viagem 1x/semana — ida e volta <span class="badge br2">Custo fixo</span></div>
-      <div class="tls">320 km × 2 × R$ 3,50 = R$ 2.240/viagem. Por mês (4 semanas): R$ 8.960. O caminhão volta de Bauru sem destino fixo definido — o custo de retorno é real e precisa estar no cálculo.</div>
+      <div class="tlt">1 viagem/semana — ida e volta <span class="badge br2">Custo fixo</span></div>
+      <div class="tls">320km × 2 × R$3,50 = R$2.240/viagem. Por mês: R$8.960. Retorno sem destino fixo definido — o custo de volta é real e precisa estar no cálculo.</div>
     </div>
     <div class="tli">
       <div class="tld" style="background:var(--am)"></div>
-      <div class="tlt">Janela de entrega curta</div>
-      <div class="tls">Pedido feito na terça só é entregue na semana seguinte. Prazo longo, cliente insatisfeito, difícil conquistar cidades vizinhas.</div>
+      <div class="tlt">Janela de entrega de apenas 1 dia/semana</div>
+      <div class="tls">Pedido feito na terça só é entregue na semana seguinte. Prazo longo, cliente insatisfeito, difícil crescer nas cidades vizinhas.</div>
     </div>
     <div class="tli">
       <div class="tld" style="background:var(--rd)"></div>
       <div class="tlt">Mais visitas = mais vendas, mas mais custo <span class="badge br2">Dilema</span></div>
-      <div class="tls">Ir 2–3x/semana aumentaria as vendas nas cidades do interior, mas o frete (ida+volta) também dobra ou triplica. Sem CD, essa conta não fecha facilmente.</div>
+      <div class="tls">Ir 2–3×/semana aumentaria as vendas, mas o frete (ida+volta) dobra ou triplica sem CD. A conta não fecha facilmente.</div>
     </div>
   </div>
 
@@ -179,23 +186,23 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
   <div class="tl">
     <div class="tli">
       <div class="tld" style="background:var(--gr)"></div>
-      <div class="tlt">1 viagem semanal (custo fixo e previsível) <span class="badge bg">Controle</span></div>
-      <div class="tls">R$ 8.960/mês de frete — igual ao modelo atual, mas com muito mais capacidade operacional. O CD absorve o volume da semana inteira.</div>
+      <div class="tlt">Custo de frete igual ao atual <span class="badge bg">Previsível</span></div>
+      <div class="tls">R$8.960/mês de frete — mesmo valor de hoje. Mas com capacidade de entregar toda semana, em 19 cidades, todo dia útil.</div>
     </div>
     <div class="tli">
       <div class="tld" style="background:var(--gr)"></div>
-      <div class="tlt">Distribuição local todos os dias</div>
+      <div class="tlt">Distribuição local 5 dias por semana</div>
       <div class="tls">Motorista local cobre raio de 100km com dia completo. Agudos (20km), Botucatu (70km), Arealva (62km) — tudo no mesmo dia, toda semana.</div>
     </div>
     <div class="tli">
       <div class="tld" style="background:var(--gr)"></div>
-      <div class="tlt">Opção de retirada no CD <span class="badge bg">Diferencial</span></div>
-      <div class="tls">Cliente retira na hora — reduz custo de last-mile e aumenta satisfação. Pode atrair novos clientes da cidade de Bauru.</div>
+      <div class="tlt">Retirada no CD disponível <span class="badge bg">Diferencial</span></div>
+      <div class="tls">Cliente retira na hora — reduz last-mile e aumenta satisfação.</div>
     </div>
     <div class="tli">
       <div class="tld" style="background:var(--gr)"></div>
-      <div class="tlt">Escalar frequência quando o volume crescer <span class="badge bg">Potencial</span></div>
-      <div class="tls">Com CD estabelecido e vendas crescendo nas cidades do interior, ir 2x/semana passa a ser justificado pelo aumento de receita — não apenas pelo custo. Use o simulador para ver os números.</div>
+      <div class="tlt">Escalar frequência quando o volume justificar <span class="badge bg">Potencial</span></div>
+      <div class="tls">Com CD pronto, ir 2×/semana exige mais frete mas sem custo extra de operação. Use o simulador para ver os números do seu cenário.</div>
     </div>
   </div>
 </div>
@@ -203,44 +210,41 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 <!-- FINANCEIRO -->
 <div id="sec-financeiro" class="sec">
   <p class="st">Análise de custo — modelo atual vs CD</p>
-  <p class="ss">Frete sempre calculado ida + volta (R$ 3,50/km · 320km cada trecho) — retorno sem destino fixo definido</p>
+  <p class="ss">Frete sempre ida+volta — retorno sem destino fixo definido</p>
 
   <div class="fc">
-    <h3 style="color:var(--rd)">Modelo atual — 1x/semana sem CD</h3>
-    <div class="fr"><span class="lb">Ida Mauá → Bauru (320km)</span><span class="vl">R$ 1.120</span></div>
-    <div class="fr"><span class="lb">Volta Bauru → Mauá (320km)</span><span class="vl">R$ 1.120</span></div>
-    <div class="fr"><span class="lb">Custo por viagem</span><span class="vl">R$ 2.240</span></div>
-    <div class="fr"><span class="lb">4 viagens/mês</span><span class="vl">R$ 8.960/mês</span></div>
-    <div class="fr"><span class="lb">Entregas possíveis por semana</span><span class="vl" style="color:var(--rd)">1 dia/semana</span></div>
-    <div class="fr"><span class="lb">Frete % receita</span><span class="vl" style="color:var(--rd)">7,3%</span></div>
+    <h3 style="color:var(--rd)">Modelo atual — 1×/semana sem CD</h3>
+    <div class="fr"><span class="lb">Ida Mauá → Bauru (320km)</span><span class="vl">R$1.120</span></div>
+    <div class="fr"><span class="lb">Volta Bauru → Mauá (320km)</span><span class="vl">R$1.120</span></div>
+    <div class="fr"><span class="lb">Custo por viagem</span><span class="vl">R$2.240</span></div>
+    <div class="fr"><span class="lb">4 viagens/mês</span><span class="vl">R$8.960/mês</span></div>
+    <div class="fr"><span class="lb">Dias de entrega/semana</span><span class="vl" style="color:var(--rd)">1 dia</span></div>
   </div>
 
   <div class="fc good">
-    <h3 style="color:var(--gr)">Modelo CD Bauru — 1x/semana <span class="badge bg" style="margin-left:4px">Recomendado</span></h3>
-    <div class="fr"><span class="lb">Transferência semanal (ida+volta) — mesmo custo atual</span><span class="vl">R$ 8.960/mês</span></div>
-    <div class="fr"><span class="lb">Galpão em Bauru (1.100m²)</span><span class="vl">R$ 9.000–11.000</span></div>
-    <div class="fr"><span class="lb">Motorista local</span><span class="vl">R$ 3.500</span></div>
-    <div class="fr"><span class="lb">Veículo leve local</span><span class="vl">R$ 2.500</span></div>
-    <div class="fr"><span class="lb">Total mensal estimado</span><span class="vl" style="color:var(--gr)">R$ 23.960–25.960</span></div>
-    <div class="fr"><span class="lb">Dias de entrega por semana</span><span class="vl" style="color:var(--gr)">5 dias/semana</span></div>
+    <h3 style="color:var(--gr)">Modelo CD Bauru — 1×/semana <span class="badge bg" style="margin-left:4px">Recomendado</span></h3>
+    <div class="fr"><span class="lb">Frete semanal (ida+volta) — igual ao atual</span><span class="vl">R$8.960/mês</span></div>
+    <div class="fr"><span class="lb">Galpão em Bauru (1.100m²)</span><span class="vl">R$9–11k/mês</span></div>
+    <div class="fr"><span class="lb">Motorista local</span><span class="vl">R$3.500/mês</span></div>
+    <div class="fr"><span class="lb">Veículo leve local</span><span class="vl">R$2.500/mês</span></div>
+    <div class="fr"><span class="lb">Total mensal estimado</span><span class="vl" style="color:var(--gr)">R$23,9–25,9k</span></div>
+    <div class="fr"><span class="lb">Dias de entrega/semana</span><span class="vl" style="color:var(--gr)">5 dias</span></div>
   </div>
 
   <div style="background:var(--am-bg);border:.5px solid #FAC775;border-radius:12px;padding:1rem;margin:1rem 0">
-    <p style="font-size:12px;font-weight:600;color:var(--am);margin-bottom:4px">O custo do CD vale pelo que ele entrega, não pela economia de frete</p>
-    <p style="font-size:11px;color:#633806;line-height:1.6">O frete semanal não muda — R$ 8.960/mês nos dois cenários. O CD adiciona ~R$ 15k/mês em galpão e equipe local. O retorno vem de 3 frentes: <strong>entregas diárias</strong> (vs 1 dia/sem hoje), <strong>novos clientes</strong> nas cidades do entorno, e <strong>retirada no CD</strong>. Se converter apenas 11 pedidos extras por mês no ticket médio atual (R$ 1.408), o CD já se paga.</p>
+    <p style="font-size:12px;font-weight:700;color:var(--am);margin-bottom:4px">O CD vale pela capacidade, não pela economia de frete</p>
+    <p style="font-size:11px;color:#633806;line-height:1.6">O frete continua R$8.960/mês nos dois cenários. O CD adiciona ~R$15k/mês em galpão e equipe. O retorno vem de entregas diárias, novos clientes no entorno e retirada no CD. Apenas 11 pedidos extras no ticket médio atual (R$1.408) cobrem o custo adicional do CD.</p>
   </div>
 
-  <p class="st">E se fossemos mais vezes?</p>
-  <p class="ss">Frete ida+volta em todos os cenários — retorno sem destino fixo</p>
+  <p class="st">Comparativo por frequência</p>
+  <p class="ss">Frete ida+volta em todos os cenários</p>
   <div id="freq-table" style="background:var(--s);border:.5px solid var(--bd);border-radius:12px;overflow:hidden;margin:1rem 0"></div>
-  <p style="font-size:10px;color:var(--mu);margin-top:4px">Sem CD: frete sobe proporcionalmente, sem ganho operacional duradouro. Com CD: frete sobe, mas distribuição local cobre volume maior sem custo extra.</p>
 </div>
 
 <!-- SIMULADOR -->
 <div id="sec-simulador" class="sec">
   <p class="st">Simulador de frequência e receita</p>
-  <p class="ss">Ajuste os controles e compare os cenários em tempo real</p>
-
+  <p class="ss">Ajuste os controles e compare cenários em tempo real</p>
   <div class="slider-wrap">
     <div class="slider-row">
       <label>Visitas/semana</label>
@@ -257,13 +261,11 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
       <input type="range" min="800" max="3000" value="1408" step="50" id="sl-tick" oninput="calc()">
       <span id="out-tick">R$1.408</span>
     </div>
-
     <div style="display:flex;gap:8px;margin:10px 0 6px;flex-wrap:wrap">
       <button class="nb active" id="btn-sem" onclick="setMode('sem')">Sem CD</button>
       <button class="nb" id="btn-com" onclick="setMode('com')">Com CD</button>
     </div>
-    <p style="font-size:10px;color:var(--mu);margin-bottom:8px">Frete sempre ida+volta nos dois modos. Com CD inclui R$15k de galpão + equipe.</p>
-
+    <p style="font-size:10px;color:var(--mu);margin-bottom:8px">Frete sempre ida+volta. Com CD inclui +R$15k de galpão e equipe.</p>
     <div class="sim-out" id="sim-out"></div>
     <div id="freq-insight" style="background:var(--s2);border-radius:8px;padding:.75rem;font-size:11px;color:var(--mu);line-height:1.6;margin-top:8px"></div>
   </div>
@@ -284,7 +286,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
       <line x1="350" y1="235" x2="560" y2="80" stroke="#B5D0D8" stroke-width="1.5"/>
       <line x1="350" y1="235" x2="140" y2="80" stroke="#B5D0D8" stroke-width="1.5"/>
       <circle cx="350" cy="235" r="50" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="4,3" opacity=".7"/>
-      <text x="400" y="220" fill="#085041" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">30 km</text>
+      <text x="400" y="222" fill="#085041" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">30 km</text>
       <circle cx="350" cy="235" r="95" fill="none" stroke="#BA7517" stroke-width="1" stroke-dasharray="4,3" opacity=".7"/>
       <text x="445" y="222" fill="#633806" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">60 km</text>
       <circle cx="350" cy="235" r="155" fill="rgba(232,83,10,0.06)" stroke="#E8530A" stroke-width="1.2" stroke-dasharray="6,4"/>
@@ -295,16 +297,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
       <text x="648" y="53" fill="#0C1B3A" font-size="8" font-family="Plus Jakarta Sans,sans-serif" opacity=".6">320km · 4h</text>
       <circle cx="350" cy="235" r="20" fill="#E8530A" stroke="#fff" stroke-width="3"/>
       <text x="350" y="239" fill="#fff" font-size="8" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="middle">HUB CD</text>
-      <text x="350" y="265" fill="#0C1B3A" font-size="13" font-family="Syne,sans-serif" font-weight="800" text-anchor="middle">BAURU</text>
+      <text x="350" y="265" fill="#0C1B3A" font-size="13" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="middle">BAURU</text>
       <text x="350" y="278" fill="#E8530A" font-size="9" font-family="Plus Jakarta Sans,sans-serif" text-anchor="middle">49 ped · R$61,3k</text>
       <circle cx="388" cy="310" r="10" fill="#1D9E75" stroke="#fff" stroke-width="1.5"/>
       <text x="388" y="314" fill="#fff" font-size="7" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">R$8,5k</text>
-      <text x="388" y="330" fill="#085041" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Agudos</text>
-      <text x="388" y="341" fill="#444441" font-size="8" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif">20km</text>
+      <text x="388" y="330" fill="#085041" font-size="10" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Agudos 20km</text>
       <circle cx="398" cy="268" r="5" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
       <text x="414" y="270" fill="#888780" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Piratininga 22km</text>
       <circle cx="288" cy="192" r="5" fill="#BA7517" stroke="#fff" stroke-width="1.5"/>
-      <text x="220" y="194" fill="#633806" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Lucianópolis 38km</text>
+      <text x="218" y="194" fill="#633806" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Lucianópolis 38km</text>
       <circle cx="443" cy="248" r="5" fill="#BA7517" stroke="#fff" stroke-width="1.5"/>
       <text x="450" y="250" fill="#633806" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Avaí 42km</text>
       <circle cx="290" cy="230" r="4" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
@@ -333,12 +334,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
       <text x="226" y="127" fill="#633806" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Pirajuí 90km</text>
       <circle cx="140" cy="195" r="4" fill="#B4B2A9" stroke="#fff" stroke-width="1.5"/>
       <text x="147" y="197" fill="#888780" font-size="8" font-family="Plus Jakarta Sans,sans-serif">Garça 95km</text>
-      <rect x="12" y="12" width="178" height="110" rx="6" fill="white" stroke="#D3D1C7" stroke-width=".5" opacity=".93"/>
+      <rect x="12" y="12" width="170" height="110" rx="6" fill="white" stroke="#D3D1C7" stroke-width=".5" opacity=".93"/>
       <text x="22" y="29" fill="#2C2C2A" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">LEGENDA</text>
       <circle cx="24" cy="42" r="7" fill="#E8530A" stroke="#fff" stroke-width="1.5"/>
       <text x="36" y="46" fill="#444441" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Hub CD — Bauru</text>
       <circle cx="24" cy="57" r="5" fill="#1D9E75"/>
-      <text x="36" y="61" fill="#444441" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Alto volume (R$5k+)</text>
+      <text x="36" y="61" fill="#444441" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Alto volume</text>
       <circle cx="24" cy="72" r="4" fill="#BA7517"/>
       <text x="36" y="76" fill="#444441" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Volume médio</text>
       <circle cx="24" cy="86" r="4" fill="#B4B2A9"/>
@@ -349,7 +350,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
       <text x="36" y="118" fill="#C44208" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Raio 100km</text>
     </svg>
     <div style="padding:8px 12px;border-top:.5px solid var(--bd)">
-      <a href="https://www.google.com/maps/@-22.3148,-49.0608,10z" target="_blank" style="font-size:11px;color:var(--br);font-weight:600;text-decoration:none">Abrir região no Google Maps →</a>
+      <a href="https://www.google.com/maps/@-22.3148,-49.0608,10z" target="_blank" style="font-size:11px;color:var(--br);font-weight:600;text-decoration:none">Abrir no Google Maps →</a>
     </div>
   </div>
 </div>
@@ -370,19 +371,19 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 <!-- GALPÕES -->
 <div id="sec-galp" class="sec">
   <p class="st">Galpões disponíveis em Bauru</p>
-  <p class="ss">Pesquisa de mercado · Abril 2026 · faixa 1.000–2.000m²</p>
+  <p class="ss">Pesquisa de mercado · Abril 2026 · 1.000–2.000m²</p>
   <div class="kg">
-    <div class="kpi warn"><div class="kl">Faixa de preço</div><div class="kv">R$ 8–15k</div><div class="ks">1.000–2.000m²/mês</div></div>
-    <div class="kpi"><div class="kl">Preço médio/m²</div><div class="kv">R$ 7–9</div><div class="ks">por mês</div></div>
-    <div class="kpi ok"><div class="kl">Opção ideal</div><div class="kv">1.100m²</div><div class="ks">Bauru Business Park</div></div>
+    <div class="kpi warn"><div class="kl">Faixa de preço</div><div class="kv">R$8–15k</div><div class="ks">por mês</div></div>
+    <div class="kpi base"><div class="kl">Preço médio/m²</div><div class="kv">R$7–9</div><div class="ks">por mês</div></div>
+    <div class="kpi ok"><div class="kl">Opção ideal</div><div class="kv">1.100m²</div><div class="ks">Business Park</div></div>
     <div class="kpi brand"><div class="kl">Anúncios ativos</div><div class="kv">300+</div><div class="ks">Viva Real · ZAP</div></div>
   </div>
   <div style="background:var(--s);border:.5px solid var(--bd);border-radius:12px;overflow:hidden;margin:1rem 0">
     <div id="galp-list"></div>
   </div>
   <div style="background:var(--gr-bg);border:.5px solid #9FE1CB;border-radius:12px;padding:1rem;margin-top:.75rem">
-    <p style="font-size:12px;font-weight:600;color:var(--gr-dk);margin-bottom:4px">Recomendação: começar com 1.000–1.100m²</p>
-    <p style="font-size:11px;color:#0F6E56;line-height:1.6">Para a operação inicial, 1.000m² é suficiente. O Bauru Business Park tem docas, pátio de manobra e segurança 24h. Conforme o volume crescer, expansão modular no mesmo condomínio.</p>
+    <p style="font-size:12px;font-weight:700;color:var(--gr-dk);margin-bottom:4px">Recomendação: começar com 1.000–1.100m²</p>
+    <p style="font-size:11px;color:#0F6E56;line-height:1.6">Para a operação inicial 1.000m² é suficiente. O Bauru Business Park tem docas, pátio de manobra e segurança 24h. Expansão modular conforme o volume crescer.</p>
     <a href="https://www.google.com/maps/search/galpao+logistico+bauru+sp/@-22.3148,-49.0608,13z" target="_blank" style="display:inline-flex;margin-top:6px;font-size:11px;font-weight:600;color:var(--gr-dk);text-decoration:none">Ver no Google Maps →</a>
   </div>
 </div>
@@ -390,26 +391,26 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
 <!-- RISCOS -->
 <div id="sec-riscos" class="sec">
   <p class="st">Riscos e mitigação</p>
-  <p class="ss">Pontos que a diretoria deve considerar antes da decisão</p>
+  <p class="ss">Pontos que a diretoria deve considerar</p>
   <div style="background:var(--s);border:.5px solid var(--bd);border-radius:12px;padding:1rem;margin:1rem 0">
     <div class="risk-item">
-      <div class="risk-ic" style="background:var(--rd-bg);color:var(--rd);font-weight:700;font-size:12px">!</div>
-      <div><div class="risk-t">Volume insuficiente para cobrir custos fixos</div><div class="risk-d">Se as vendas caírem, o CD (~R$15k/mês) pode virar custo sem retorno.</div><div class="risk-m" style="color:var(--gr)">Mitigação: 11 pedidos extras no ticket médio atual já cobrem o CD. Contrato de galpão de 12 meses renovável.</div></div>
+      <div class="risk-ic" style="background:var(--rd-bg);color:var(--rd)">!</div>
+      <div><div class="risk-t">Volume insuficiente para cobrir custos fixos</div><div class="risk-d">Se as vendas caírem, o CD (~R$15k/mês) pode virar custo sem retorno.</div><div class="risk-m" style="color:var(--gr)">Mitigação: 11 pedidos extras no ticket médio atual já cobrem o CD. Contrato de 12 meses renovável.</div></div>
     </div>
     <div class="risk-item">
-      <div class="risk-ic" style="background:var(--am-bg);color:var(--am);font-weight:700;font-size:12px">?</div>
+      <div class="risk-ic" style="background:var(--am-bg);color:var(--am)">?</div>
       <div><div class="risk-t">Gestão à distância</div><div class="risk-d">Controlar estoque a 320km exige processos claros desde o início.</div><div class="risk-m" style="color:var(--gr)">Mitigação: responsável local no dia 1 · visitas semanais nas primeiras 8 semanas.</div></div>
     </div>
     <div class="risk-item">
-      <div class="risk-ic" style="background:var(--am-bg);color:var(--am);font-weight:700;font-size:12px">~</div>
-      <div><div class="risk-t">Estoque parado em Bauru</div><div class="risk-d">Carga fechada semanal pode gerar excesso se pedidos variarem.</div><div class="risk-m" style="color:var(--gr)">Mitigação: pedidos cortados na quinta para envio segunda · estoque de 3–5 dias apenas.</div></div>
+      <div class="risk-ic" style="background:var(--am-bg);color:var(--am)">~</div>
+      <div><div class="risk-t">Estoque parado em Bauru</div><div class="risk-d">Carga semanal pode gerar excesso se pedidos variarem.</div><div class="risk-m" style="color:var(--gr)">Mitigação: pedidos cortados na quinta para envio segunda · estoque de 3–5 dias apenas.</div></div>
     </div>
     <div class="risk-item">
-      <div class="risk-ic" style="background:var(--rd-bg);color:var(--rd);font-weight:700;font-size:12px">*</div>
+      <div class="risk-ic" style="background:var(--rd-bg);color:var(--rd)">*</div>
       <div><div class="risk-t">Segurança do estoque</div><div class="risk-d">Galpão fora da sede aumenta risco sem supervisão direta.</div><div class="risk-m" style="color:var(--gr)">Mitigação: condomínio logístico com segurança 24h · seguro de carga.</div></div>
     </div>
     <div class="risk-item" style="border:none">
-      <div class="risk-ic" style="background:var(--s2);color:var(--mu);font-weight:700;font-size:12px">$</div>
+      <div class="risk-ic" style="background:var(--s2);color:var(--mu)">$</div>
       <div><div class="risk-t">Custo trabalhista do operador local</div><div class="risk-d">CLT tem encargos. Demissão tem custo se o projeto não vingar.</div><div class="risk-m" style="color:var(--gr)">Mitigação: parceiro 3PL por 6 meses antes de contratar CLT.</div></div>
     </div>
   </div>
@@ -423,13 +424,13 @@ body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--tx);font-size:14px}
     <div class="step-card"><div class="step-n">01</div><div class="step-t">Aprovação</div><div class="step-d">Definir budget e autorizar visita a Bauru</div><div class="step-dt">Semana 1</div></div>
     <div class="step-card"><div class="step-n">02</div><div class="step-t">Visita galpões</div><div class="step-d">3 opções · negociar condições e prazo</div><div class="step-dt">Semana 2–3</div></div>
     <div class="step-card"><div class="step-n">03</div><div class="step-t">Operador local</div><div class="step-d">3PL vs CLT · definir modelo de gestão</div><div class="step-dt">Semana 3–4</div></div>
-    <div class="step-card"><div class="step-n">04</div><div class="step-t">Assinar contrato</div><div class="step-d">12 meses renovável · definir data de entrada</div><div class="step-dt">Semana 5</div></div>
+    <div class="step-card"><div class="step-n">04</div><div class="step-t">Assinar contrato</div><div class="step-d">12 meses renovável · definir entrada</div><div class="step-dt">Semana 5</div></div>
     <div class="step-card"><div class="step-n">05</div><div class="step-t">Piloto 30 dias</div><div class="step-d">1ª carga fechada · medir tempo e satisfação</div><div class="step-dt">Mês 2</div></div>
     <div class="step-card"><div class="step-n">06</div><div class="step-t">Expandir cidades</div><div class="step-d">Ativar Piratininga, Garça, Macatuba e mais</div><div class="step-dt">Mês 3</div></div>
   </div>
   <div class="closing">
     <div class="closing-title">Resumo da decisão</div>
-    <p class="closing-text">O frete semanal não muda — R$ 8.960/mês nos dois cenários. O CD adiciona ~R$ 15k/mês em galpão e equipe local. O ganho real está na capacidade: de 1 dia de entrega por semana para 5 dias por semana, cobertura de 19 cidades, opção de retirada e base para escalar quando as vendas justificarem mais visitas.</p>
+    <p class="closing-text">O frete continua R$8.960/mês nos dois cenários. O CD adiciona ~R$15k/mês em galpão e equipe. O ganho real: de 1 dia de entrega por semana para 5 dias, cobertura de 19 cidades todos os dias e base para escalar quando as vendas justificarem.</p>
     <div class="closing-stats">
       <div class="cs"><div class="cs-v" style="color:#5DCAA5">5 dias/sem</div><div class="cs-l">vs 1 dia hoje</div></div>
       <div class="cs"><div class="cs-v" style="color:#FFAA80">+20%</div><div class="cs-l">receita potencial</div></div>
@@ -444,56 +445,45 @@ const KM=3.5,DIST=320;
 const fmt=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
 
 const cities=[
-  {n:"Bauru",p:49,f:61323,st:"hub"},
-  {n:"Botucatu",p:16,f:29861,st:"ok"},
-  {n:"Agudos",p:10,f:8480,st:"ok"},
-  {n:"Arealva",p:4,f:6809,st:"ok"},
-  {n:"Pirajuí",p:2,f:2939,st:"med"},
-  {n:"Ubirajara",p:1,f:2721,st:"med"},
-  {n:"Borebi",p:1,f:2606,st:"med"},
-  {n:"Lucianópolis",p:1,f:2288,st:"med"},
-  {n:"Lençóis Paulista",p:2,f:905,st:"med"},
-  {n:"Avaí",p:1,f:860,st:"med"},
-  {n:"Iacanga",p:1,f:403,st:"med"},
-  {n:"Cafelândia",p:0,f:1221,st:"pot"},
-  {n:"Presidente Alves",p:0,f:821,st:"pot"},
-  {n:"Reginópolis",p:0,f:627,st:"pot"},
-  {n:"Macatuba",p:0,f:321,st:"pot"},
-  {n:"São Manuel",p:0,f:86,st:"pot"},
-  {n:"Barra Bonita",p:0,f:42,st:"pot"},
-  {n:"Garça",p:0,f:25,st:"pot"},
+  {n:"Bauru",p:49,f:61323,st:"hub"},{n:"Botucatu",p:16,f:29861,st:"ok"},
+  {n:"Agudos",p:10,f:8480,st:"ok"},{n:"Arealva",p:4,f:6809,st:"ok"},
+  {n:"Pirajuí",p:2,f:2939,st:"med"},{n:"Ubirajara",p:1,f:2721,st:"med"},
+  {n:"Borebi",p:1,f:2606,st:"med"},{n:"Lucianópolis",p:1,f:2288,st:"med"},
+  {n:"Lençóis Paulista",p:2,f:905,st:"med"},{n:"Avaí",p:1,f:860,st:"med"},
+  {n:"Iacanga",p:1,f:403,st:"med"},{n:"Cafelândia",p:0,f:1221,st:"pot"},
+  {n:"Presidente Alves",p:0,f:821,st:"pot"},{n:"Reginópolis",p:0,f:627,st:"pot"},
+  {n:"Macatuba",p:0,f:321,st:"pot"},{n:"São Manuel",p:0,f:86,st:"pot"},
+  {n:"Barra Bonita",p:0,f:42,st:"pot"},{n:"Garça",p:0,f:25,st:"pot"},
   {n:"Piratininga",p:0,f:0,st:"pot"},
 ];
 const tb=document.getElementById('ctbody');
 cities.forEach(c=>{
   const sb=c.st==='hub'?'<span class="badge bb">Hub CD</span>':c.st==='ok'?'<span class="badge bg">Ativo</span>':c.st==='med'?'<span class="badge ba">Médio</span>':'<span class="badge" style="background:var(--s2);color:var(--mu)">Potencial</span>';
   const tr=document.createElement('tr');
-  tr.innerHTML=`<td>${c.n}</td><td>${c.p}</td><td>${fmt(c.f)}</td><td>${sb}</td>`;
+  tr.innerHTML=`<td>${c.n}</td><td>${c.p}</td><td style="font-family:'DM Mono',monospace;font-size:11px">${fmt(c.f)}</td><td>${sb}</td>`;
   tb.appendChild(tr);
 });
 
-const freqData=[1,2,3,4,5];
 const ft=document.getElementById('freq-table');
-let html=`<div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:4px;padding:7px 10px;background:var(--s2);font-size:9px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.04em"><span>Frequência</span><span>Frete/mês</span><span>Com CD</span><span>Ganho operacional</span></div>`;
-freqData.forEach(f=>{
+let html=`<div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.1fr);gap:4px;padding:7px 10px;background:var(--s2);font-size:9px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.04em"><span>Frequência</span><span>Frete/mês</span><span>Com CD</span><span>Entregas/sem</span></div>`;
+[1,2,3,4,5].forEach(f=>{
   const frete=Math.round(f*4*DIST*2*KM);
-  const comCd=Math.round(f*4*DIST*2*KM)+15000;
+  const comCd=frete+15000;
   const isCurrent=f===1;
-  const gains=['1 dia/sem','2 dias/sem','3 dias/sem','4 dias/sem','5 dias/sem'];
-  html+=`<div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:4px;padding:8px 10px;border-bottom:.5px solid var(--bd);font-size:11px;align-items:center;${isCurrent?'background:var(--br-bg)':''}">
+  html+=`<div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.1fr);gap:4px;padding:8px 10px;border-bottom:.5px solid var(--bd);font-size:11px;align-items:center;${isCurrent?'background:var(--br-bg)':''}">
     <span style="font-weight:600">${f}×/sem${isCurrent?' <span class="badge bb">atual</span>':''}</span>
-    <span style="color:var(--rd)">${fmt(frete)}</span>
-    <span style="color:var(--am)">${fmt(comCd)}</span>
-    <span style="color:var(--gr);font-size:10px">${gains[f-1]} de entregas</span>
+    <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--rd)">${fmt(frete)}</span>
+    <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--am)">${fmt(comCd)}</span>
+    <span style="font-size:10px;color:var(--gr)">5 dias/sem</span>
   </div>`;
 });
 ft.innerHTML=html;
 
 const galps=[
-  {n:"Bauru Business Park",rec:true,area:"1.100m²",desc:"Rod. Marechal Rondon km 348 · Docas · Pátio de manobra · Pé direito 10m · Segurança 24h",price:"~R$ 9.900–11.000/mês"},
-  {n:"Galpão Distrito Industrial",rec:false,area:"2.000m²",desc:"Região industrial · 2 docas · Câmaras frias · Pátio 4.000m²",price:"~R$ 14.000–16.000/mês"},
-  {n:"Galpão Parque Paulista",rec:false,area:"2.000m²",desc:"100m da Av. Rodrigues Alves · 10 docas · Próximo ao centro",price:"~R$ 13.000–15.000/mês"},
-  {n:"Barracão simples",rec:false,area:"1.000–1.200m²",desc:"Região industrial · sem docas · opção mais econômica para início",price:"~R$ 8.000–10.000/mês"},
+  {n:"Bauru Business Park",rec:true,area:"1.100m²",desc:"Rod. Marechal Rondon km 348 · Docas · Pátio · Pé direito 10m · Segurança 24h",price:"~R$9.900–11.000/mês"},
+  {n:"Galpão Distrito Industrial",rec:false,area:"2.000m²",desc:"2 docas · câmaras frias · Pátio 4.000m²",price:"~R$14.000–16.000/mês"},
+  {n:"Galpão Parque Paulista",rec:false,area:"2.000m²",desc:"100m da Av. Rodrigues Alves · 10 docas",price:"~R$13.000–15.000/mês"},
+  {n:"Barracão simples",rec:false,area:"1.000–1.200m²",desc:"Região industrial · sem docas · opção econômica",price:"~R$8.000–10.000/mês"},
 ];
 const gl=document.getElementById('galp-list');
 galps.forEach(g=>{
@@ -510,7 +500,6 @@ function setMode(m){
   document.getElementById('btn-com').classList.toggle('active',m==='com');
   calc();
 }
-
 function calc(){
   const freq=parseInt(document.getElementById('sl-freq').value);
   const ped=parseInt(document.getElementById('sl-ped').value);
@@ -518,34 +507,23 @@ function calc(){
   document.getElementById('out-freq').textContent=freq+'×/sem';
   document.getElementById('out-ped').textContent=ped;
   document.getElementById('out-tick').textContent='R$'+tick.toLocaleString('pt-BR');
-
   const freqMes=freq*4;
   const freteMes=Math.round(freqMes*DIST*2*KM);
   const receitaMes=Math.round(freqMes*ped*tick);
   const custoCD=mode==='com'?15000:0;
   const custoTotal=freteMes+custoCD;
-  const margem=receitaMes-custoTotal;
   const pct=receitaMes>0?Math.round((freteMes/receitaMes)*100):0;
-
-  const diasEntrega=mode==='com'?Math.min(freq*5,5):freq;
-  const diasLabel=mode==='com'?'5 dias/sem':''+freq+' dia'+(freq>1?'s':'')+'/sem';
-
+  const diasLabel=mode==='com'?'5 dias/sem':freq+' dia'+(freq>1?'s':'')+'/sem';
+  const extras=Math.round(custoCD/tick);
   document.getElementById('sim-out').innerHTML=`
     <div class="sim-card"><div class="sim-l">Frete/mês</div><div class="sim-v" style="color:var(--rd)">${fmt(freteMes)}</div></div>
-    <div class="sim-card"><div class="sim-l">Receita estimada</div><div class="sim-v" style="color:var(--gr)">${fmt(receitaMes)}</div></div>
+    <div class="sim-card"><div class="sim-l">Receita est.</div><div class="sim-v" style="color:var(--gr)">${fmt(receitaMes)}</div></div>
     <div class="sim-card"><div class="sim-l">Frete % receita</div><div class="sim-v" style="color:${pct>15?'var(--rd)':'var(--am)'}">${pct}%</div></div>
-    <div class="sim-card"><div class="sim-l">Dias de entrega</div><div class="sim-v" style="color:var(--gr)">${diasLabel}</div></div>
-  `;
-
-  const ins=document.getElementById('freq-insight');
-  let msg='';
-  if(mode==='sem'){
-    msg=`Sem CD, ${freq}x/semana: frete de ${fmt(freteMes)}/mês (ida+volta). Capacidade de entrega: ${freq} dia${freq>1?'s':''}/semana. Pedidos fora do dia da visita aguardam a próxima semana.`;
-  } else {
-    const extras=Math.round(custoCD/tick);
-    msg=`Com CD, ${freq}x/semana para reabastecer: frete de ${fmt(freteMes)}/mês + R$15k do CD = ${fmt(custoTotal)}/mês. Entregas todos os 5 dias úteis. São necessários ~${extras} pedidos extras/mês para cobrir o custo do CD.`;
-  }
-  ins.textContent=msg;
+    <div class="sim-card"><div class="sim-l">Dias entrega</div><div class="sim-v" style="color:var(--gr)">${diasLabel}</div></div>`;
+  const msg=mode==='sem'
+    ?`Sem CD, ${freq}×/semana: frete de ${fmt(freteMes)}/mês (ida+volta). Capacidade: ${freq} dia${freq>1?'s':''}/semana. Pedidos fora do dia da visita esperam a semana seguinte.`
+    :`Com CD, ${freq}×/semana: frete ${fmt(freteMes)} + R$15k CD = ${fmt(custoTotal)}/mês. Entregas 5 dias/semana. Necessários ~${extras} pedidos extras/mês para cobrir o CD.`;
+  document.getElementById('freq-insight').textContent=msg;
 }
 calc();
 
